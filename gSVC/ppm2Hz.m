@@ -28,7 +28,7 @@ figure;imagesc(a);axis image;colorbar;title chi(ppm);
 figure;imagesc(b0);axis image;colorbar;title b0(Hz);
 %}
 
-function [b0,S,T] = ppm2Hz(chi,dr,r,t,n)
+function b0 = ppm2Hz(chi,dr,r,t,B0)
 [s2,s1,s3] = size(chi);                 % (2,1,3) correspond to (1st,2nd,3rd fast dim.)
 dy = dr(1); dx = dr(2); dz = dr(3);     %[m]    (y,x,z) correspond to the same.
 r2 = r(1);  r1 = r(2);  r3 = r(3);      %[m]
@@ -64,7 +64,7 @@ K(ind0) = K(ind0) + 4*pi/3;         % delta function integral term
 % F = fftn(K)/4/pi;                 % [OLD], source-centered kernel
 F = conj(fftn(K))/4/pi;             % [NEW], target-centered kernel
 
-factor = 42.578e6*n*1e-6;         % ppm to Hz
+factor = 42.578e6*B0*1e-6;         % ppm to Hz
 F = F*factor;                       % k-space dipolar field core
 % assignin('base','K',K);disp('K > workplace');
 % assignin('base','F',F);disp('F > workplace');

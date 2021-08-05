@@ -1,5 +1,5 @@
     
-function [b0,S,T] = ppm2Hznl2(chi,dr,r,t,l,Bx,By,Bz)  %B field should have same grid size with chi field. 
+function b0 = ppm2Hznl2(chi,dr,r,t,l,Bx,By,Bz)  %B field should have same grid size with chi field. 
 [s2,s1,s3] = size(chi);                 % (2,1,3) correspond to (1st,2nd,3rd fast dim.)
 dy = dr(1); dx = dr(2); dz = dr(3);     %[m]    (y,x,z) correspond to the same.
 r2 = r(1);  r1 = r(2);  r3 = r(3);      %[m]

@@ -1,5 +1,5 @@
 
-function [b0,S,T] = ppm2Hz3l(chi,dr,r,t,l,b)
+function b0 = ppm2Hz3l(chi,dr,r,t,l,B0)
 [s2,s1,s3] = size(chi);                 % (2,1,3) correspond to (1st,2nd,3rd fast dim.)
 dy = dr(1); dx = dr(2); dz = dr(3);     %[m]    (y,x,z) correspond to the same.
 r2 = r(1);  r1 = r(2);  r3 = r(3);      %[m]
@@ -27,7 +27,7 @@ K = l3.*atan1(X1,Y1,Z1,X2,Y2,Z2)+...
 % F = fftn(K)/4/pi;                 % [OLD], source-centered kernel
 F = conj(fftn(K))/4/pi;             %  [NEW], target-centered kernel
 
-factor = 42.578e6*b*1e-6;         % ppm to Hz
+factor = 42.578e6*B0*1e-6;         % ppm to Hz
 F = F*factor;                       % k-space dipola r field core
 % assignin('base','K',K);disp('K > workplace');
 % assignin('base','F',F);disp('F > workplace');

@@ -1,4 +1,4 @@
-# ppm2Hz - augmented matlab based susceptibility induced B0 inhomogeneity calculation programs
+# ppm2Hz - augmented matlab based 'susceptibility induced B0 inhomogeneity' calculation programs
 Two theoritical methods are coded, generalized susceptibility voxel convolution(gSVC) and k space-discretized(KD)
 
 **common input parameters**

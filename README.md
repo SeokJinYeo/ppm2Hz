@@ -23,12 +23,12 @@ Additionally another static magnetic field perturbation calculation method, k-sp
 # gSVC input parameters
 - r : distance between source and target grid [m]
 - t : target grid size
-- ex) b0 = ppm2Hznl(chi,dr,r,t,n,l,B0);
+- **ex) b0 = ppm2Hznl(chi,dr,r,t,n,l,B0);**
 
 # KD input parameters
 - ff : fine-grain factor
 - bf : zero-filling factor
-- ex) b0 = ppm2Hznl_KD(chi,dr,ff,bf,n,l,B0);
+- **ex) b0 = ppm2Hznl_KD(chi,dr,ff,bf,n,l,B0);**
 
 # References
 This work has been published in MRM.

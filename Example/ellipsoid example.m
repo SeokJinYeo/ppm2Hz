@@ -1,13 +1,76 @@
-# ppm2Hz usage example to calculate B0 map induced by magnetized ellipsoid
+% ppm2Hzs usage examples to calculate B0 map induced by magnetized ellipsoid
 
-# making ellipsoid model
+% making ellipsoid model
 x=[1:80]-(1+80)/2;
 y=[1:40]-(1+40)/2;
 z=[1:20]-(1+20)/2;
 [xx,yy,zz] = meshgrid(x,y,z);
-S = (xx.^2)/1600 + (yy.^2)/400 + (zz.^2)/100 <=1;   % finally 'S' is input source model
+chi = (xx.^2)/1600 + (yy.^2)/400 + (zz.^2)/100 <=1;   % finally 'chi' is input source model
 dr = [0.001 0.001 0.001];  % voxel size[m]
 
-# conventional case(n=l=z)
+% other parameters
+r = [0 0 0];      
+t = [40 80 20];
+ff = 1; % fine-grain factor, could be larger in order to decrease ringing artifact
+bf = 2; % zero-filling buffer, could be larger in order to reduce aliasing artifact
+B0 = 3; % strength of applied b0 field(3T)
+
+% conventional case(n=l=z)
 n=[0 0 1];
 l=[0 0 1];
+b0ellip = ellipsoid_field3(80,40,20,n,l,chi,B0);  % analytical solution of b0 field inside the ellipsoid(Osborn JA. 1945), should download at example folder
+ellipanalytical = b0ellip(20,40,10);  % analytical b0 value along x-axis
+b01 = ppm2Hz(chi,dr,r,t,B0);  %produced by gSVC
+b02 = ppm2Hz_KD(chi,dr,ff,bf,B0); %produced by KD
+y1=squeeze(b01(20, :, 10)); y2=squeeze(b02(20, :, 10)); % calculated b0 value along x-axis of each method
+x=[1:80]-(1+80)/2;
+figure; plot(x,y1,'b'); 
+hold on; plot(x,y2,'g');
+axis([-40 40 -40 0]);
+xlabel('x[mm]');
+xticks([-40 -20 0 20 40]);
+ylabel('B_{0}[Hz]'); 
+yticks([-40 -30 -20 -10 0]);
+hold on;
+fplot(ellipanalytical,[-40,40],'r--');
+set(gca,'FontSize',23);
+
+% arbitrary directon case
+n=[1/sqrt(3),1/sqrt(3),1/sqrt(3)];
+l=[0,0,1];
+b0ellip = ellipsoid_field3(80,40,20,n,l,chi,B0);  % analytical solution of b0 field inside the ellipsoid(Osborn JA. 1945), should download at example folder
+ellipanalytical = b0ellip(20,40,10);  % analytical b0 value along x-axis
+b01 = ppm2Hznl(chi,dr,r,t,n,l,B0);  %produced by gSVC
+b02 = ppm2Hznl_KD(chi,dr,ff,bf,n,l,B0); %produced by KD
+y1=squeeze(b01(20, :, 10)); y2=squeeze(b02(20, :, 10)); % calculated b0 value along x-axis of each method
+x=[1:80]-(1+80)/2;
+figure; plot(x,y1,'b'); 
+hold on; plot(x,y2,'g');
+axis([-40 40 -40 0]);
+xlabel('x[mm]');
+xticks([-40 -20 0 20 40]);
+ylabel('B_{0}[Hz]'); 
+yticks([-40 -30 -20 -10 0]);
+hold on;
+fplot(ellipanalytical,[-40,40],'r--');
+set(gca,'FontSize',23);
+
+% spatially varying applied field case
+l=[0,0,1];
+Bx=zeros(40,80,20); By=zeros(40,80,20); Bz=zeros(40,80,20);
+for i=1:20
+Bx(:,:,i)=2+0.1*i;
+By(:,:,i)=2+0.1*i;
+Bz(:,:,i)=2+0.1*i;
+end % make spatially varying magnetic field
+b01 = ppm2Hznl2(chi,dr,r,t,l,Bx,By,Bz);  %produced by gSVC
+b02 = ppm2Hznl2_KD(chi,dr,ff,bf,l,Bx,By,Bz); %produced by KD
+y1=squeeze(b01(20, :, 10)); y2=squeeze(b02(20, :, 10)); % calculated b0 value along x-axis of each method
+x=[1:80]-(1+80)/2;
+figure; plot(x,y1,'b'); 
+hold on; plot(x,y2,'g');
+axis([-40 40 -40 0]);
+xlabel('x[mm]');
+xticks([-40 -20 0 20 40]);
+ylabel('B_{0}[Hz]'); 
+yticks([-40 -30 -20 -10 0]);

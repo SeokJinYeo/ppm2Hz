@@ -4,14 +4,16 @@ For application in various cases, the method was extended to arbitrary orientati
 Additionally another static magnetic field perturbation calculation method, k-space-discretized(KD) is coded(ppm2Hz_KD). If you want more details(theory, applications) of method, see the references below.
 
 # Usage examples
-- example of ppm2Hz applied at ellipsoid model with arbitrary direction 
-- example of spatially varying applied field
+- example of ppm2Hz applied at ellipsoid model Link: [ellipsoid][elliplink]
+
+[elliplink]: https://google.com "Go google"
 
 # Versions
+Reauiring input parameters are varying in each version, users need to check them at each code.
 - ppm2Hz : Conventional cases when direction of object's magnetization(n) and the direction in which its magnetic field(l) are coincide to z-direction(n=l=z).
 - nppm2Hz : When two directions are coincede to arbitrary direction(n=l).
 - ppm2Hznl : When two directions are set arbitrary.
-- ppm2Hznl2 : When applied field is spatially varying and direction of perturbation is arbitrary.
+- ppm2Hznl2 : When the applied field is spatially varying and direction of perturbation is arbitrary. We need scalar field of each component of applied vector magnetic field(Bx,By,Bz) .Those scalar fields need to have the same grid and voxel size with input susceptibility model.
 
 # Common input parameters
 - chi : source susceptibility model 

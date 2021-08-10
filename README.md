@@ -4,9 +4,9 @@ For application in various cases, the method was extended to arbitrary orientati
 Additionally another static magnetic field perturbation calculation method, k-space-discretized(KD) is coded(ppm2Hz_KD). If you want more details(theory, applications) of method, see the references below.
 
 # Usage examples
-- example of ppm2Hz applied at ellipsoid model Link: [ellipsoid][elliplink]
+- [example][elliplink] of ppm2Hz applied at ellipsoid model Link: 
 
-[elliplink]: https://google.com "Go google"
+[elliplink]: https://github.com/SeokJinYeo/ppm2Hz/tree/main/Example "example"
 
 # Versions
 Reauiring input parameters are varying in each version, users need to check them at each code.

@@ -9,7 +9,7 @@ Additionally another static magnetic field perturbation calculation method, k-sp
 [elliplink]: https://github.com/SeokJinYeo/ppm2Hz/tree/main/Example "example"
 
 # Versions
-Reauiring input parameters are varying in each version, users need to check them at each code.
+Requiring input parameters are varying in each version, users need to check them at each code.
 - ppm2Hz : Conventional cases when direction of object's magnetization(n) and the direction in which its magnetic field(l) are coincide to z-direction(n=l=z).
 - nppm2Hz : When two directions are coincede to arbitrary direction(n=l).
 - ppm2Hznl : When two directions are set arbitrary.

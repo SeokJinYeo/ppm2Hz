@@ -17,20 +17,20 @@ Required input parameters vary in different versions; users need to check them f
 - ppm2Hznl2 : When the applied field is spatially varying (in magnitude and direction) and the direction of perturbation is arbitrary. We need each component of applied vector magnetic field (Bx,By,Bz). They need to have the same grid and voxel sizes as the input susceptibility model.
 
 # Common input parameters
-- chi : source susceptibility model 
-- dr : voxel size [m]
-- B0 : strength of applied magnetic field [T]
-- n : direction of applied magnetic field(magnetization)
-- l : direction of perturbation field (n and l are unit vectors)
+- chi : (3D array) source susceptibility model [ppm] 
+- dr : (1x3 vector) voxel size [m]
+- B0 : (scalar) strength of applied magnetic field [T]
+- n : (1x3 unit vector) direction of applied magnetic field (or magnetization)
+- l : (1x3 unit vector) direction of perturbation field 
 
 # gSVC input parameters
-- r : distance between source and target grid [m]
-- t : target grid size
+- r : (1x3 vector) distance between the first points of source and target grids [m]
+- t : (1x3 vector) target grid size
 - **ex) b0 = ppm2Hznl(chi,dr,r,t,n,l,B0);**
 
 # KD input parameters
-- ff : fine-grain factor
-- bf : zero-filling factor
+- ff : (integer) fine-grain factor
+- bf : (integer) zero-filling factor
 - **ex) b0 = ppm2Hznl_KD(chi,dr,ff,bf,n,l,B0);**
 
 # References

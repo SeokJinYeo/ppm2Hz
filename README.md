@@ -10,11 +10,11 @@ Additionally another static magnetic field perturbation calculation method, k-sp
 [elliplink]: https://github.com/SeokJinYeo/ppm2Hz/tree/main/Example "example"
 
 # Versions
-Requiring input parameters are varying in each version, users need to check them at each code.
-- ppm2Hz : Conventional cases when direction of object's magnetization(n) and the direction in which its magnetic field(l) are coincide to z-direction(n=l=z).
-- nppm2Hz : When two directions are coincede to arbitrary direction(n=l).
-- ppm2Hznl : When two directions are set arbitrary.
-- ppm2Hznl2 : When the applied field is spatially varying and direction of perturbation is arbitrary. We need scalar field of each component of applied vector magnetic field(Bx,By,Bz) .Those scalar fields need to have the same grid and voxel size with input susceptibility model.
+Required input parameters vary in different versions; users need to check them for each code.
+- ppm2Hz : Conventional cases when direction of object's magnetization (n) and the direction of its magnetic field (l) coincide with the z-direction (n=l=z).
+- nppm2Hz : When the two directions are the same (n=l, not necessarily in z).
+- ppm2Hznl : When the two directions are arbitrary.
+- ppm2Hznl2 : When the applied field is spatially varying (in magnitude and direction) and the direction of perturbation is arbitrary. We need each component of applied vector magnetic field (Bx,By,Bz). They need to have the same grid and voxel sizes as the input susceptibility model.
 
 # Common input parameters
 - chi : source susceptibility model 

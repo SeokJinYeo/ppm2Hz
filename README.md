@@ -1,4 +1,5 @@
-# ppm2Hz(in progress) : Fast and accurate Matlab based 'susceptibility-induced B0 inhomogeneity' calculation programs
+![ppm2hz logo](https://github.com/SeokJinYeo/ppm2Hz/blob/main/ppm2Hz%20icon.png)
+# (in progress) : Fast and accurate Matlab based 'susceptibility-induced B0 inhomogeneity' calculation programs
 ppm2Hzs are based on generalized susceptibility voxel convolution(gSVC) method which is rapid and artifact-free[1].
 For application in various cases, the method was extended to arbitrary orientation and spatially varying applied field case[2].
 Additionally another static magnetic field perturbation calculation method, k-space-discretized(KD) is coded(ppm2Hz_KD). If you want more details(theory, applications) of method, see the references below.

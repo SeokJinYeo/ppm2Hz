@@ -78,7 +78,7 @@ temp = dField*10^(-6)*42.576e6;  % [Hz] for B0[T], chi[ppm].
 temp2 = temp(1:size(chi0,1),1:size(chi0,2),1:size(chi0,3));
 %% Downsampling by averaging
 if ff>1
-     b0 = D(temp2,ff);
+     b0 = C(temp2,ff);
 else
      b0 = temp2;
 end

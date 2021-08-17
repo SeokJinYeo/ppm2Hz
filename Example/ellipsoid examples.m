@@ -57,20 +57,19 @@ set(gca,'FontSize',23);
 
 % spatially varying applied field case
 l=[0,0,1];
-Bx=zeros(40,80,20); By=zeros(40,80,20); Bz=zeros(40,80,20);
-for i=1:20
-Bx(:,:,i)=2+0.1*i;
-By(:,:,i)=2+0.1*i;
-Bz(:,:,i)=2+0.1*i;
-end % make spatially varying magnetic field
+Bx = -yy.^2;
+By = xx.^2;
+Bz = zeros(40,80,20); % make spatially varying magnetic field
 b01 = ppm2Hznl2(chi,dr,r,t,l,Bx,By,Bz);  %produced by gSVC
 b02 = ppm2Hznl2_KD(chi,dr,ff,bf,l,Bx,By,Bz); %produced by KD
-y1=squeeze(b01(20, :, 10)); y2=squeeze(b02(20, :, 10)); % calculated b0 value along x-axis of each method
+b03 = ppm2Hznl2_KD(chi,dr,2,bf,l,Bx,By,Bz); %produced by KD when ff=2
+y1=squeeze(b01(20, :, 10)); y2=squeeze(b02(20, :, 10)); y3=squeeze(b03(20, :, 10)); % calculated b0 value along x-axis of each method
 x=[1:80]-(1+80)/2;
 figure; plot(x,y1,'b'); 
 hold on; plot(x,y2,'g');
-axis([-40 40 -40 0]);
+hold on; plot(x,y3,'r');
+axis([-40 40 -100 100]);
 xlabel('x[mm]');
 xticks([-40 -20 0 20 40]);
 ylabel('B_{0}[Hz]'); 
-yticks([-40 -30 -20 -10 0]);
+yticks([-100 -50 0 50 100]);
